@@ -1,51 +1,18 @@
 <script setup>
-import MainLayout from '~/layouts/MainLayout.vue'
-import {useUserStore} from '~/stores/user'
 import axios from "axios"
-const userStore = useUserStore()
-let posts=ref([])
-let isPosts=ref(true)
-let isLoading=ref(false)
-
-  // posts.value=[
-  //   {
-  //     name:'John Weeks Dev',
-  //     image:'https://placehold.co/100',
-  //     text:'This is the title',
-  //     picture:'https://placehold.co/500'
-  //   }
-  // ]
-  onBeforeMount(async()=>{
-    await axios.get('/api/all').then((res)=>{
-      posts.value=res.data
+const text=ref("")
+onMounted(async()=>{
+    await axios.get('/api/hi').then((res)=>{
+        text.value=res.data
     })
-
-  })
-   const removePost = (id) => {
-     const index = posts.value.findIndex(p => p.id === id)
-     if (index !== -1) {
-         posts.value.splice(index, 1)
-     }
-   }
+    
+        
+    
+})
 
 </script>
 
 <template>
-    
-    <MainLayout>
-      
-      <div id="IndexPage" class="w-full overflow-auto py-6">
-        
-       <div class="mx-auto max-w-[500px] overflow-hidden">
-        <div id="Posts" class="px-4 max-w-[600px] mx-auto">
-          <div class="text-white text-3xl" v-if="isPosts" v-for="post in posts" :key="post">
-            
-          <Post :post="post" @isDeleted="posts=[]"/>
-          </div>
-         
-        </div>
-       </div>
-      </div>
-    </MainLayout>
-    
+    <h2>Hello world</h2>
+    <h3>{{ text }}</h3>
 </template>
