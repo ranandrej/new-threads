@@ -6,9 +6,7 @@ const userStore = useUserStore()
 let posts=ref([])
 let isPosts=ref(true)
 let isLoading=ref(false)
-definePageMeta({
-  middleware: 'auth'
-})
+
   // posts.value=[
   //   {
   //     name:'John Weeks Dev',
