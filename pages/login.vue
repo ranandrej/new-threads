@@ -36,13 +36,13 @@ const password=ref('')
   
  
 
-// const signInWithMail=async()=>{
-//   let { data, error } = await supabase.auth.signInWithPassword({
-//   email: email.value,
-//   password: password.value
-// })
-// if (error) throw error
-// navigateTo('/')
-// }
+const signInWithMail=async()=>{
+  let { data, error } = await supabase.auth.signInWithPassword({
+  email: email.value,
+  password: password.value
+})
+if (error) throw error
+navigateTo('/')
+}
 
 </script>
