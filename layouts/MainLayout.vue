@@ -2,13 +2,13 @@
 <script setup>
 import {useUserStore} from '~/stores/user'
 const userStore=useUserStore()
-const user=useSupabaseUser()
+//const user=useSupabaseUser()
 </script>
 <template>
     <div id="MainLayout" class="h-screen">
         <div class="w-full max-w-[500px] mx-auto">
 
-            <p class="text-white p-2 md:text-lg text-sm m-3">Hi,{{ user.email }}</p>
+            <p class="text-white p-2 md:text-lg text-sm m-3">Hi</p>
         <div id="TopMenu" class="w-full flex items-center justify-center px-2 h-10 my-2">
             
            <img class="w-[35px]" src="/threads-logo.png" alt="">
