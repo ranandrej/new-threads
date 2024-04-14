@@ -76,7 +76,7 @@ import {useUserStore} from '~/stores/user'
 
 const userStore=useUserStore()
 const supabase=useSupabaseClient()
-const user={}
+let user={}
 onMounted(()=>{
   if(useSupabaseUser()){
     user=useSupabaseUser()
