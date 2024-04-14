@@ -4,7 +4,7 @@ import MainLayout from '~/layouts/MainLayout.vue'
 import axios from "axios"
 const text=ref("")
 onMounted(async()=>{
-    text.value=await $fetch('http://localhost:3000/api/all',{
+    text.value=await $fetch('/api/all',{
       method:"GET"
     }
     )
