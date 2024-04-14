@@ -13,7 +13,7 @@
                    <input type="password" placeholder="Password" class="w-full p-2 rounded-full my-2 border-gray-500 border-2 bg-black" v-model="password">
 
                 </div>
-                <button @click="signInWithMail" class="flex mt-3 items-center justify-center gap-3 p-1.5 w-full border rounded-full text-lg font-semibold">
+                <button  class="flex mt-3 items-center justify-center gap-3 p-1.5 w-full border rounded-full text-lg font-semibold">
                     <div class="flex items-center gap-2 justify-center">
                         
                         Login with E-mail
@@ -36,13 +36,13 @@ const password=ref('')
   
  
 
-const signInWithMail=async()=>{
-  let { data, error } = await supabase.auth.signInWithPassword({
-  email: email.value,
-  password: password.value
-})
-if (error) throw error
-navigateTo('/')
-}
+// const signInWithMail=async()=>{
+//   let { data, error } = await supabase.auth.signInWithPassword({
+//   email: email.value,
+//   password: password.value
+// })
+// if (error) throw error
+// navigateTo('/')
+// }
 
 </script>
