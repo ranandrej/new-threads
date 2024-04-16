@@ -3,12 +3,12 @@ import MainLayout from '~/layouts/MainLayout.vue'
 
 import axios from "axios"
 const isPosts=ref(true)
-const posts=ref([])
+
 definePageMeta({
   middleware: 'auth'
 })
 onMounted(async()=>{
-    posts.value=await $fetch('/api/all',{
+    useUserStore().posts=await $fetch('/api/all',{
       method:"GET"
     }
     )
@@ -16,6 +16,12 @@ onMounted(async()=>{
         
     
 })
+const removePost = (id) => {
+  const index = useUserStore().posts.findIndex(p => p.id === id)
+  if (index !== -1) {
+    useUserStore().posts.splice(index, 1)
+  }
+  }
 
 </script>
 
@@ -26,9 +32,9 @@ onMounted(async()=>{
         
        <div class="mx-auto max-w-[500px] overflow-hidden">
         <div id="Posts" class="px-4 max-w-[600px] mx-auto">
-          <div class="text-white text-3xl" v-if="isPosts" v-for="post in posts" :key="post">
+          <div class="text-white text-3xl" v-if="isPosts" v-for="post in useUserStore().posts" :key="post">
             
-          <Post :post="post" @isDeleted="posts=[]"/>
+          <Post :post="post" @isDeleted="removePost(post.id)"/>
           </div>
          
         </div>

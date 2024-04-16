@@ -11,7 +11,6 @@
                 <div id="Post" class="z-40 bottom-0 max-h-[100vh-200px] w-full px-3 max-w-[500px] mx-auto py-5">
                     <div class="py-2 w-full">
                         <div class="flex items-center text-white">
-                            <img :src="user ? `https://htgwagioeyowtusrvool.supabase.co/storage/v1/object/public/threads-clone/${user.id}.png`:''" alt="" class="rounded-full h-[35px]">
                             <img :src="user.id ? `https://htgwagioeyowtusrvool.supabase.co/storage/v1/object/public/threads-clone/${user.id}.png`:''" alt="" class="rounded-full h-[35px]">
                             <div class="ml-2 font-semibold text-[18px]">{{user.email}}</div>
                         </div>
@@ -27,7 +26,7 @@
                                 placeholder="Write something..." 
                                 id="textarea"
                                 @input="adjustTextArea()"
-                                class="w-full bg-black outlined-none"
+                                class="w-full bg-black outlined-none p-3"
                                 />
                             </div>
                             <div class="w-full">
@@ -81,6 +80,7 @@ onMounted(()=>{
   if(useSupabaseUser()){
     user=useSupabaseUser()
   }
+  
 })
 
 let text=ref(null)
@@ -120,9 +120,11 @@ const post=async()=>{
     console.log('Error', error)
   }else{
     isLoading.value=false
-    clearData()
     alert('Successfully posted!')
     userStore.isMenuOverlay=false
+    
+    clearData()
+
   }
 
 }

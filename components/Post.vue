@@ -24,14 +24,16 @@ onMounted(()=>{
       }
     }
 })
-// const deletePost=async(id)=>{
-//   isDeleting.value=true
-//    await axios.get(`/api/delete?id=${id}`).then((res)=>{
-//     emit('isDeleted')
-//     alert('Successfuly deleted post!')
-//     isDeleting.value=false
-//    })
-// }
+ const deletePost=async(id)=>{
+ 
+   isDeleting.value=true
+   await axios.get(`/api/delete?id=${id}`).then((res)=>{
+    emit('isDeleted')
+    alert('Successfuly deleted post!')
+    isDeleting.value=false
+   })
+   
+}
 const likePost=async(id)=>{
 
   const { data, error } = await supabase
@@ -55,7 +57,7 @@ const likePost=async(id)=>{
     <div class="py-2 w-full">
         <div class="flex items-center justify-between">
             <div class="flex items-center text-white">
-             <img alt="" class="rounded-full h-[35px]" :src="`https://htgwagioeyowtusrvool.supabase.co/storage/v1/object/public/threads-clone/${post.user.id}.png`">
+             <img alt="" v-if="post.user" class="rounded-full h-[35px]" :src="`https://htgwagioeyowtusrvool.supabase.co/storage/v1/object/public/threads-clone/${post.user.id}.png`">
              <div class="ml-2 font-semibold text-[18px]">{{ post.user.email }}</div>
             </div>
             <div @click="isMenu=!isMenu" class="relative">
@@ -69,7 +71,7 @@ const likePost=async(id)=>{
               <i v-if="!isDeleting" class="bi bi-three-dots text-2xl text-white"></i>
               </button>
               <div v-if="isMenu" class="absolute border border-gray-600 right-0 z-20 mt-1 rounded">
-                <button  class="flex items-center rounded gap-2 text-red-500 text-sm justify-between bg-black w-full pl-4 pr-3 py-1 hover:bg-gray-900">
+                <button v-if="useSupabaseUser().value.email==post.user.email" @click="deletePost(post.id)" class="flex items-center rounded gap-2 text-red-500 text-sm justify-between bg-black w-full pl-4 pr-3 py-1 hover:bg-gray-900">
                 <div>Delete</div>
                 <i class="bi bi-trash-fill"></i>
                 </button>
