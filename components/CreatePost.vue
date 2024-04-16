@@ -122,7 +122,7 @@ const post=async()=>{
     isLoading.value=false
     alert('Successfully posted!')
     userStore.isMenuOverlay=false
-    
+    useUserStore().posts.unshift({ user: useSupabaseUser().value, text: text.value,image:imagePath,likes:0})
     clearData()
 
   }
