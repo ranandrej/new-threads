@@ -32,7 +32,7 @@
                             <div class="w-full">
                                 <div class="flex flex-col gap-2 py-1">
                                     <div v-if="fileDisplay">
-                                        <img :src="fileDisplay" alt="" class="mx-auto w-full mt-2 mr-2 rounded-lg">
+                                        <img :src="fileDisplay" alt="" class="mx-auto w-full max-h-[400px] mt-2 mr-2 rounded-lg">
 
                                     </div>
                                     <label for="fileInput" class="text-white">
